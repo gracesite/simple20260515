@@ -5,6 +5,7 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 const SVC_NAME = process.env.SVC_NAME || 'hardCode';
+const MONGO_URI = process.env.MONGO_URI || 'not in the .env file'
 console.log("simple0515------> process.env.PORT is:", PORT);
 console.log("SVC_NAME is", SVC_NAME);
 console.log("MONGO_URI=", process.env.MONGO_URI);
