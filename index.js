@@ -28,7 +28,7 @@ app.get("/health", (req, res) => {
   res.json({ status: "health ok" });
 });
 
-app.get("/products", (req, res) => {
+app.get("/products", async (req, res) => {
   try {
     const products = await Product.find();
     res.join(produts);
