@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const app = express();
 
 const PORT = process.env.PORT || 3000;
+const SVC_NAME = process.env.SVC_NAME || 'hardCode';
 console.log("simple0515------> process.env.PORT is:", PORT);
 const MONGO_URI = "mongodb+srv://gracetzay123_db_user:v1bbs8y1U0o2P2jK@cluster0.pbivwkx.mongodb.net/test"
 mongoose.connect(MONGO_URI )
