@@ -7,7 +7,8 @@ const PORT = process.env.PORT || 3000;
 const SVC_NAME = process.env.SVC_NAME || 'hardCode';
 console.log("simple0515------> process.env.PORT is:", PORT);
 console.log("SVC_NAME is", SVC_NAME);
-const MONGO_URI = "mongodb+srv://gracetzay123_db_user:v1bbs8y1U0o2P2jK@cluster0.pbivwkx.mongodb.net/test"
+console.log("MONGO_URI=", process.env.MONGO_URI);
+// const MONGO_URI = "mongodb+srv://gracetzay123_db_user:v1bbs8y1U0o2P2jK@cluster0.pbivwkx.mongodb.net/test"
 mongoose.connect(MONGO_URI )
   .then(() => console.log("MongoDB connected ✅"))
   .catch(err => console.error("MongoDB connection error:", err));
