@@ -31,7 +31,14 @@ app.get("/health", (req, res) => {
 app.get("/products", async (req, res) => {
   try {
     const products = await Product.find();
-    res.join(produts);
+    const str1 = "Products fetched successfully";
+    console.log("--->>>", str1);
+    console.log(products);
+
+    res.json({
+      message: str1,
+      data: products,
+    });
   } catch (error) {
     console.error(error);
     res.status(500).json({
