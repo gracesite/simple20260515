@@ -57,7 +57,7 @@ app.get("/products/:sku", async (req, res) => {
       error: "Failed to fetch a product",
     });
   }
-}
+});
 
 // HTTP 
 
