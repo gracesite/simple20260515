@@ -76,7 +76,7 @@ app.post("/add_product", async (req, res) => {
 });
 // HTTP PUT;
 // HTTP DELETE product by SKU
-app.delete("/products/:sku", async (req, res) => {
+app.delete("/delete_products/:sku", async (req, res) => {
   try{
     const delProduct = await Product.findByIdAndDelete(req.param.id);
     if (!deletedProduct){
