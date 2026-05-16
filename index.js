@@ -75,18 +75,42 @@ app.post("/add_product", async (req, res) => {
   }
 });
 // HTTP PUT;
-// HTTP DELETE product by SKU
+app.put("/update_product/:sku", async (req, res) => {
+  try{
+    const updatedProduct = await Product.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true, // return the updated document
+        runValidators: true // enforce schema validation
+      });
+    if (!updatedProduct){
+      return res.status(404).json({
+        error: "Product not found.  Cannot be updated",
+      });
+    }
+    res.json({
+      message: "Product updated successfully: %s" % req.parms.id,
+      product: updatedProduct,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      error: "Failed to delete a product. Is product non-exists?",
+    });
+  }
+});
+// HTTP DELETE product by SKU  ***** NOT WORKING *****
 // curl -X DELETE http://localhost:3000/products/PRODUCT_ID
 app.delete("/products/:sku", async (req, res) => {
   try{
-    const delProduct = await Product.findByIdAndDelete(req.param.id);
+    const deletedProduct = await Product.findByIdAndDelete(req.params.id);
     if (!deletedProduct){
       return res.status(404).json({
         error: "Product not found.  Cannot be deleted",
       });
     }
     res.json({
-      message: "Product deleted successfully: %s" % req.parm.id,
+      message: "Product deleted successfully: %s" % req.parms.id,
       deletedProduct,
     });
   } catch (error) {
