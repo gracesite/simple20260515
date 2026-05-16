@@ -60,6 +60,7 @@ app.get("/products/:sku", async (req, res) => {
 });
 
 // HTTP POST - ADD PRODUCT
+// Example: check if the product already exists.
 // curl -X POST http://DOMAIN:PORT/add_product -H "Content-Type: application/json" -d '{"name":"ginger", "sku":"sku202","qty":10}'
 app.post("/add_product", async (req, res) => {
   try{
@@ -69,12 +70,30 @@ app.post("/add_product", async (req, res) => {
   } catch (error) {
       console.error(error);
       res.status(500).json({
-      error: "Failed to add a product",
+      error: "Failed to add a product. Is product already exists?",
     });
   }
 });
-// HTTP PUT
-
+// HTTP PUT;
+// HTTP DELETE product by SKU
+app.delete("/products/:sku", async (req, res) => {
+  try{
+    const delProduct = await Product.findByIdAndDelete(req.param.id);
+    if (!deletedProduct){
+      return res.status(404).json({
+        error: "Product not found.  Cannot be deleted",
+      });
+    }
+    res.json({
+      message: "Product deleted successfully: %s" % req.parm.id,
+      deletedProduct,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      error: "Failed to delete a product. Is product non-exists?",
+  }
+});
 // start server
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
