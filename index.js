@@ -24,10 +24,7 @@ app.get("/", (req, res) => {
   res.send("Hello from Render-deployed backend!");
 });
 
-app.get("/health", (req, res) => {
-  res.json({ status: "health ok" });
-});
-
+// HTTP GET
 app.get("/products", async (req, res) => {
   try {
     const products = await Product.find();
@@ -46,6 +43,23 @@ app.get("/products", async (req, res) => {
     });
   }
 });
+
+app.get("/products/:sku", async (req, res) => {
+  try{
+    const sku = await Product.findOne();
+    if (!sku) {
+      return res.status(400).json({error: "product not found"});
+    }
+    return res.status(200).json(product);
+  } catch (error) {
+    console.error(error);
+    rerturn res.status(500).json({
+      error: "Failed to fetch a product";
+    });
+  }
+}
+
+// HTTP 
 
 // start server
 app.listen(PORT, () => {
