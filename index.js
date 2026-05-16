@@ -59,7 +59,21 @@ app.get("/products/:sku", async (req, res) => {
   }
 });
 
-// HTTP 
+// HTTP POST - ADD PRODUCT
+// curl -X POST http://DOMAIN:PORT/add_product -H "Content-Type: application/json" -d '{"name":"ginger", "sku":"sku202","qty":10}'
+app.post("/add_product", async (req, res) => {
+  try{
+    const newProduct = new Product(req.body);
+    await newProduct.save();
+    res.status(201).json(newProduct);
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({
+      error: "Failed to add a product",
+    });
+  }
+});
+// HTTP PUT
 
 // start server
 app.listen(PORT, () => {
