@@ -53,7 +53,7 @@ app.get("/products/:sku", async (req, res) => {
     return res.status(200).json(product);
   } catch (error) {
     console.error(error);
-    rerturn res.status(500).json({
+    res.status(500).json({
       error: "Failed to fetch a product";
     });
   }
