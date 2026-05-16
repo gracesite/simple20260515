@@ -50,7 +50,7 @@ app.get("/products/:sku", async (req, res) => {
     if (!sku) {
       return res.status(400).json({error: "product not found"});
     }
-    return res.status(200).json(product);
+    return res.status(200).json(sku);
   } catch (error) {
     console.error(error);
     res.status(500).json({
