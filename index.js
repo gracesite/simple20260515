@@ -92,6 +92,7 @@ app.delete("/delete_products/:sku", async (req, res) => {
     console.error(error);
     res.status(500).json({
       error: "Failed to delete a product. Is product non-exists?",
+    });
   }
 });
 // start server
